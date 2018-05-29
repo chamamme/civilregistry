@@ -21,9 +21,7 @@
             </div>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="nav navbar-nav">
-                    <li role="presentation"><a href="#">Update </a></li>
                     <li role="presentation"><a href="booking.php">Add member</a></li>
-                    <li role="presentation"><a href="#">Verification </a></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <ul class="nav navbar-nav navbar-right">
