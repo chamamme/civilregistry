@@ -22,12 +22,13 @@
                 <thead>
                     <tr>
                         <th>#</th>
+                        <th>ID</th>
                         <th>Name</th>
                         <th>Gender</th>
                         <th>Email</th>
                         <th>Date Of birth</th>
                         <th>Member Since</th>
-                        <th>Action</th>
+                        {{--<th>Action</th>--}}
 
                     </tr>
                 </thead>
@@ -36,12 +37,13 @@
                 @foreach($members as $member)
                     <tr>
                         <th scope="row">{{$count}}</th>
+                        <td>{{$member->ref_id}}</td>
                         <td>{{$member->last_name}} {{$member->first_name}}</td>
                         <td>{{$member->gender}}</td>
                         <td>{{$member->email}}</td>
                         <td>{{$member->dob}}</td>
                         <td>{{$member->created_at}}</td>
-                        <td><a href="#" class="btn btn-default"><i class="glyphicon glyphicon-eye-open"></i>  View</a></td>
+                        {{--<td><a href="#" class="btn btn-default"><i class="glyphicon glyphicon-eye-open"></i>  View</a></td>--}}
                     </tr>
                     @php($count++)
                 @endforeach
