@@ -1,0 +1,19 @@
+.pull-right{
+    float: right !important;
+}
+
+.pull-left{
+    float: left !important;
+}
+
+label{
+    font-weight: 400;
+}
+
+
+.card{
+    margin-top: 10px;
+}
+.card-header{
+    text-align: center;
+}
