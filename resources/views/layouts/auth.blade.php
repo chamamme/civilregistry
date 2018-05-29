@@ -172,7 +172,7 @@
             <div class="modal-body">
                 <div class="form-group">
                     <div class="input-group">
-                        <input class="form-control" id="bad_id" type="text" value="" name="bad_id" placeholder="Enter Birth Certificate Id">
+                        <input class="form-control" id="bad_id" type="text" value="" name="bad_id" placeholder="Enter Birth Certificate Id / Fist Name/ Last Name">
                         <span class="input-group-btn">
                             <button class="btn btn-default" onclick="lookup()" type="button">Go!</button>
                           </span>

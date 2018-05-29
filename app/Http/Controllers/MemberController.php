@@ -251,7 +251,10 @@ class MemberController extends Controller
      */
     public function verify(Request $request){
         $str = trim($request->bad_id);
-        $members = Member::where('ref_id',$str)->first();
+        $members = Member::where('ref_id',$str)
+            ->orWhere('first_name','like',"%{$str}%")
+            ->orWhere('last_name','like',"%{$str}%")
+            ->first();
 //        dd($str,$members);
         return json_encode($members ? $members : []);
     }
