@@ -39,6 +39,16 @@ class RegisterController extends Controller
     {
         $this->middleware('guest');
     }
+    /**
+     * Show the application registration form.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function showRegistrationForm()
+    {
+        $insts = Institution::all();
+        return view('auth.register',compact('insts'));
+    }
 
     /**
      * Get a validator for an incoming registration request.
