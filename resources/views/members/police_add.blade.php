@@ -49,24 +49,7 @@
 
                                 </div>
                             <div class="row">
-                                <div class=" col-md-3">
-                                    <div class="form-group">
-                                        <label for="nationality" class=" text-md-right">{{ __('Nationality') }}</label>
-                                        <div class="">
-                                            <select id="nationality" type="text" class="form-control{{ $errors->has('nationality') ? ' is-invalid' : '' }}" name="nationality" value="{{ old('nationality') }}" required>
-                                                <option value=""> --Select Nationality-- </option>
-                                                @foreach($countries as $ct)
-                                                    <option value="{{$ct->demonym}}" @if(old('nationality')== $ct->demonym) selected @endif>{{$ct->demonym}}</option>
-                                                @endforeach
-                                            </select>
-                                            @if ($errors->has('nationality'))
-                                                <span class="invalid-feedback">
-                                            <strong>{{ $errors->first('nationality') }}</strong>
-                                        </span>
-                                            @endif
-                                        </div>
-                                    </div>
-                                </div>
+
                                 <div class=" col-md-5">
                                     <div class="form-group">
                                         <label for="residential_address" class=" text-md-right">{{ __(' Residential Address') }}</label>
@@ -93,60 +76,35 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                                <div class="row">
-                                    <div class="col col-md-6">
-                                        <div class="form-group">
-                                            <label for="phone" class=" text-md-right">{{ __('Phone') }}</label>
-                                            <div class="">
-                                                <input id="phone" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required >
-                                                @if ($errors->has('phone'))
-                                                    <span class="invalid-feedback">
+                                <div class="col col-md-3">
+                                    <div class="form-group">
+                                        <label for="phone" class=" text-md-right">{{ __('Phone') }}</label>
+                                        <div class="">
+                                            <input id="phone" type="text" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}" required >
+                                            @if ($errors->has('phone'))
+                                                <span class="invalid-feedback">
                                         <strong>{{ $errors->first('phone') }}</strong>
                                     </span>
-                                                @endif
-                                            </div>
+                                            @endif
                                         </div>
                                     </div>
-                                    <div class=" col-md-6">
-                                        <div class="form-group">
-                                            <label for="dob" class=" text-md-right">{{ __(' Date Of Birth') }}</label>
-                                            <div class="">
-                                                <input id="dob" type="date" class="form-control{{ $errors->has('dob') ? ' is-invalid' : '' }}" name="dob" value="{{ old('dob') }}" required>
-                                                @if ($errors->has('dob'))
-                                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('dob') }}</strong>
-                                    </span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col col-md-6">
-                                        <div class="form-group">
-                                            <label for="weight" class=" text-md-right">{{ __('Weight') }}</label>
-                                            <div class="">
-                                                <input id="weight" type="number" class="form-control{{ $errors->has('weight') ? ' is-invalid' : '' }}" name="weight" value="{{ old('weight') }}" required>
-
-                                                @if ($errors->has('weight'))
-                                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('weight') }}</strong>
-                                    </span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
-
                                 </div>
+                            </div>
 
                             <div class="row">
                                 <div class=" col-md-6">
                                     <div class="form-group">
-                                        <label for="disorders" class=" text-md-right">{{ __('disorders') }}</label>
+                                        <label for="case_type" class=" text-md-right">{{ __('Case Type') }}</label>
                                         <div class="">
-                                            <textarea id="disorders" class="form-control{{ $errors->has('disorders') ? ' is-invalid' : '' }}" name="disorders"  >{{ old('disorders') }}</textarea>
-                                            @if ($errors->has('disorders'))
+                                            <select id="case_type" class="form-control{{ $errors->has('case_type') ? ' is-invalid' : '' }}" name="case_type"  >
+                                                <option value="">--Select Case Type -- </option>
+                                                <option value="accident" @if(old('case_type')== 'accident') selected @endif>Accident</option>
+                                                <option value="criminal" @if(old('case_type')== 'criminal') selected @endif>Criminal</option>
+                                                <option value="death" @if(old('case_type')== 'death') selected @endif>Death</option>
+                                                {{ old('case_type') }}</select>
+                                            @if ($errors->has('case_type'))
                                                 <span class="invalid-feedback">
-                                                <strong>{{ $errors->first('disorders') }}</strong>
+                                                <strong>{{ $errors->first('case_type') }}</strong>
                                             </span>
                                             @endif
                                         </div>
@@ -154,12 +112,12 @@
                                 </div>
                                 <div class=" col-md-6">
                                     <div class="form-group">
-                                        <label for="natural_sickness" class=" text-md-right">{{ __('Natural Sickness') }}</label>
+                                        <label for="case_number" class=" text-md-right">{{ __('Case Number') }}</label>
                                         <div class="">
-                                            <textarea id="natural_sickness" class="form-control{{ $errors->has('natural_sickness') ? ' is-invalid' : '' }}" name="natural_sickness"  >{{ old('natural_sickness') }}</textarea>
-                                            @if ($errors->has('natural_sickness'))
+                                            <input id="case_number" class="form-control{{ $errors->has('case_number') ? ' is-invalid' : '' }}" name="case_number"  value="{{old('case_number')}}" >
+                                            @if ($errors->has('case_number'))
                                                 <span class="invalid-feedback">
-                                                <strong>{{ $errors->first('natural_sickness') }}</strong>
+                                                <strong>{{ $errors->first('case_number') }}</strong>
                                             </span>
                                             @endif
                                         </div>
@@ -167,13 +125,26 @@
                                 </div>
                                 <div class=" col-md-12">
                                     <div class="form-group">
-                                        <label for="report" class=" text-md-right">{{ __('Report') }}</label>
+                                        <label for="case_report" class=" text-md-right">{{ __('Case Report') }}</label>
                                         <div class="">
-                                            <textarea id="report" class="form-control{{ $errors->has('report') ? ' is-invalid' : '' }}" name="report" required>{{ old('report') }}</textarea>
-                                            @if ($errors->has('report'))
+                                            <textarea id="case_report" class="form-control{{ $errors->has('case_report') ? ' is-invalid' : '' }}" name="case_report" required>{{ old('case_report') }}</textarea>
+                                            @if ($errors->has('case_report'))
                                                 <span class="invalid-feedback">
-                                                <strong>{{ $errors->first('report') }}</strong>
+                                                <strong>{{ $errors->first('case_report') }}</strong>
                                             </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col col-md-6">
+                                    <div class="form-group">
+                                        <label for="officer_in_charge" class=" text-md-right">{{ __('Officer In Charge') }}</label>
+                                        <div class="">
+                                            <input id="officer_in_charge" type="text" class="form-control{{ $errors->has('officer_in_charge') ? ' is-invalid' : '' }}" name="officer_in_charge" value="{{ old('officer_in_charge') }}" required >
+                                            @if ($errors->has('officer_in_charge'))
+                                                <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('officer_in_charge') }}</strong>
+                                    </span>
                                             @endif
                                         </div>
                                     </div>

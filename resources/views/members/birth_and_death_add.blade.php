@@ -101,6 +101,25 @@
                                             </div>
                                         </div>
                                     </div>
+
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="gender" class=" text-md-right">{{ __('Gender') }}</label>
+                                            <div class="col-md-6">
+                                                <select class="form-control" type="radio" name="gender" value="male" required>
+                                                    <option value="">--Select Gender--</option>
+                                                    <option value="male"  @if(old('gender') == 'male') selected @endif>Male</option>
+                                                    <option value="female"  @if(old('gender') == 'female') selected @endif>Female</option>
+                                                </select>
+
+                                                @if ($errors->has('gender'))
+                                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('gender') }}</strong>
+                                    </span>
+                                                @endif
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                         </div>
                     </div>
@@ -128,8 +147,12 @@
                                 <div class=" col-md-6">
                                     <div class="form-group">
                                         <label for="father_nationality" class=" text-md-right">{{ __(' Father Nationality') }}</label>
-
-                                            <input id="father_nationality" type="text" class="form-control{{ $errors->has('father_nationality') ? ' is-invalid' : '' }}" name="father_nationality" value="{{ old('father_nationality') }}" required>
+                                        <select id="father_nationality" type="text" class="form-control{{ $errors->has('father_nationality') ? ' is-invalid' : '' }}" name="father_nationality" value="{{ old('father_nationality') }}" required>
+                                            <option value="">--Select Nationality--</option>
+                                            @foreach($countries as $ct)
+                                                <option value="{{$ct->demonym}}" @if( !empty(old('father_nationality')) && (old('father_nationality')== $ct->demonym)) selected @endif>{{$ct->demonym}}</option>
+                                            @endforeach
+                                        </select>
                                             @if ($errors->has('father_nationality'))
                                                 <span class="invalid-feedback">
                                         <strong>{{ $errors->first('father_nationality') }}</strong>
@@ -171,7 +194,12 @@
                                     <div class="form-group">
                                         <label for="mother_nationality" class=" text-md-right">{{ __(' Mother Nationality') }}</label>
                                         <div class="">
-                                            <input id="mother_nationality" type="text" class="form-control{{ $errors->has('mother_nationality') ? ' is-invalid' : '' }}" name="mother_nationality" value="{{ old('mother_nationality') }}" required>
+                                            <select id="mother_nationality" type="text" class="form-control{{ $errors->has('mother_nationality') ? ' is-invalid' : '' }}" name="mother_nationality" value="{{ old('mother_nationality') }}" required>
+                                                <option value=""> --Select Nationality-- </option>
+                                                @foreach($countries as $ct)
+                                                    <option value="{{$ct->demonym}}" @if(  old('mother_nationality')== $ct->demonym) selected @endif>{{$ct->demonym}}</option>
+                                                @endforeach
+                                            </select>
                                             @if ($errors->has('mother_nationality'))
                                                 <span class="invalid-feedback">
                                         <strong>{{ $errors->first('mother_nationality') }}</strong>
@@ -210,28 +238,7 @@
                                             {{--</div>--}}
                                         {{--</div>--}}
                                     {{--</div>--}}
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="gender" class=" text-md-right">{{ __('Gender') }}</label>
-                                            <div class="col-md-6">
-                                                <div class=" row">
-                                                    <div class="col- col-md-6">
-                                                        <input id="male" type="radio" name="gender" value="male" required @if(old('gender') == 'male') checked @endif> <label for="male">Male</label>
-                                                    </div>
-                                                </div>
-                                                <div class=" row">
-                                                    <div class="col- col-md-6">
-                                                        <input id="female" type="radio" class="" name="gender" value="female" required  @if(old('gender') == 'female') checked @endif><label for="female">Female</label>
-                                                    </div>
-                                                </div>
-                                                @if ($errors->has('gender'))
-                                                    <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('gender') }}</strong>
-                                    </span>
-                                                @endif
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </div>
 
                                 <div class="form-group mb-0">

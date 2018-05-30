@@ -72,7 +72,7 @@
     <main class="py-4">
         @if ( Session::has('flash_message') )
 
-            <div class="alert {{ Session::get('flash_message')['type'] }}">
+            <div class="alert {{ Session::get('flash_message')['type'] }} text-center">
                 <h3>{{ Session::get('flash_message')['message'] }}</h3>
             </div>
 
@@ -133,11 +133,18 @@
                                 <div class="description">Electoral Commission</div>
                             </div>
                         </div>
-                        <div class=" step @if(strtolower($inst->name) != 'ssnit') disabled @endif " onclick="ssnit()" id="ssnitbtn">
+                        <div class=" step @if(strtolower($inst->name) != 'ssnit') disabled @endif " >
                             <i class="database icon"></i>
                             <div class="content">
                                 <div class="title">SSNIT</div>
                                 <div class="description">Social Security</div>
+                            </div>
+                        </div>
+                        <div class=" step @if(strtolower($inst->name) != 'police') disabled @endif ">
+                            <i class="shield icon"></i>
+                            <div class="content">
+                                <div class="title">Police</div>
+                                <div class="description"> Security Service </div>
                             </div>
                         </div>
                     </div>

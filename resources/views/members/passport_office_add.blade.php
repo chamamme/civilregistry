@@ -179,7 +179,12 @@
                                         <div class="form-group">
                                             <label for="nationality" class=" text-md-right">{{ __('Nationality') }}</label>
                                             <div class="">
-                                                <input id="nationality" type="text" class="form-control{{ $errors->has('nationality') ? ' is-invalid' : '' }}" name="nationality" value="{{ old('nationality') }}" required>
+                                                <select id="nationality" type="text" class="form-control{{ $errors->has('nationality') ? ' is-invalid' : '' }}" name="nationality" value="{{ old('nationality') }}" required>
+                                                    <option value=""> --Select Nationality-- </option>
+                                                    @foreach($countries as $ct)
+                                                        <option value="{{$ct->demonym}}" @if(old('nationality')== $ct->demonym) selected @endif>{{$ct->demonym}}</option>
+                                                    @endforeach
+                                                </select>
                                                 @if ($errors->has('nationality'))
                                                     <span class="invalid-feedback">
                                             <strong>{{ $errors->first('nationality') }}</strong>

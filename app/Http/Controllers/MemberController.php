@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Country;
 use App\ElectrolDetail;
 use App\HospitalDetail;
 use App\Institution;
 use App\LicenceDetail;
 use App\Member;
 use App\PassportDetail;
+use App\PoliceDetail;
 use App\SsnitDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -45,6 +47,9 @@ class MemberController extends Controller
             case 's_s_n_i_t':
                 $members = SsnitDetail::orderby('id','desc')->get();
                 break;
+            case 'police':
+                $members = PoliceDetail::orderby('id','desc')->get();
+                break;
 
         }
 
@@ -59,10 +64,12 @@ class MemberController extends Controller
     public function create()
     {
         //
+        $countries = Country::where('demonym','!=','')->get();
+//        dd($countries);
         $inst = auth()->user()->institution;
         $template = strtolower(snake_case($inst->name,'_'));
 //        dd($template);
-        return view("members.{$template}_add",compact('inst'));
+        return view("members.{$template}_add",compact('inst','countries'));
     }
 
     /**
@@ -148,6 +155,21 @@ class MemberController extends Controller
                 $this->validate($request,$rules);
                 HospitalDetail::create($inputs);
                 break;
+            case 'police':
+                $rules = [
+                    'member_id'=>'required',
+                    'first_name'=> 'required|no_numeric|max:32',
+                    'last_name'=> 'required|no_numeric|max:32',
+                    'phone'=> 'required|phone',
+                    'residential_address' => 'required',
+                    'case_report' => 'required',
+                    'case_type' => 'required',
+                    'officer_in_charge' => 'required',
+                ];
+                $inputs['ref_id']= uniqid('hs-');
+                $this->validate($request,$rules);
+                PoliceDetail::create($inputs);
+                break;
             case 'e_c':
 
                 $rules = [
@@ -186,7 +208,7 @@ class MemberController extends Controller
 
         }
 
-        Session::flash('flash_message',['type'=>'alert-info','message'=>'New member added']);
+        Session::flash('flash_message',['type'=>'alert-info','message'=>'Saved Successfully']);
         return redirect(route('members.list'));
 //        return redirect(route('members.list'));
     }

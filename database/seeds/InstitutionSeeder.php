@@ -19,6 +19,7 @@ class InstitutionSeeder extends Seeder
             ['name'=>"Hospital"],
             ['name'=>"EC"],
             ['name'=>"SSNIT"],
+            ['name'=>"Police"],
         ];
 
         foreach ($insts as $inst){
