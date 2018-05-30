@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'GHANA REGISTRY'),
+    'name' => env('APP_NAME', 'CIVIL REGISTRY'),
 
     /*
     |--------------------------------------------------------------------------
