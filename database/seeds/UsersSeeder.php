@@ -11,9 +11,10 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
+        $inst = \App\Institution::first();
          $user = [
             'name' => 'Andrew',
-            'institution_id' => 1,
+            'institution_id' => $inst->id,
             'staff_id' => 'asdfaeee',
             'email' => 'andrew@mail.com',
             'password' => '$2y$10$TKh8H1.PfQx37YgCzwiKb.KjNyWgaHb9cbcoQgdIVFlYg7B77UdFm', // secret
