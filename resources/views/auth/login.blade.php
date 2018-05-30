@@ -11,12 +11,12 @@
 					</span>
                     <div style="color: red; text-align: center"> </div>
 
-                    <div class="wrap-input100 validate-input m-b-16" data-validate = "Email is required">
-                        <input class="input100 form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" type="text" name="email" placeholder="email" value="{{old('email')}}">
+                    <div class="wrap-input100 validate-input m-b-16" data-validate = "Staff Id is required">
+                        <input class="input100 form-control{{ $errors->has('staff_id') ? ' is-invalid' : '' }}" type="text" name="staff_id" placeholder="Staff ID" value="{{old('staff_id')}}">
                         <span class="focus-input100"></span>
-                        @if ($errors->has('email'))
+                        @if ($errors->has('staff_id'))
                             <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong>{{ $errors->first('staff_id') }}</strong>
                                     </span>
                         @endif
                     </div>

@@ -144,7 +144,7 @@
                                     </div>
                                     <div class=" col-md-3">
                                         <div class="form-group">
-                                            <label for="marital_status" class=" text-md-right">{{ __('ID Type') }}</label>
+                                            <label for="marital_status" class=" text-md-right">{{ __('Marital Status') }}</label>
                                             <div class="">
                                                 <select id="marital_status" type="text" class="form-control{{ $errors->has('marital_status') ? ' is-invalid' : '' }}" name="marital_status" value="{{ old('marital_status') }}" required>
                                                     <option value="">--- Select Marital Status ---</option>

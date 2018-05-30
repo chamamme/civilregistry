@@ -26,3 +26,4 @@ Route::group(['middleware'=>['web','auth']],function () {
 
 Route::get('members/details', 'MemberController@details')->name('members.details');
 Route::get('members/verify', 'MemberController@verify')->name('members.verify');
+Route::get('members/save_finger', 'MemberController@saveFinger')->name('members.verify');

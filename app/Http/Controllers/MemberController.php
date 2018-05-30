@@ -88,8 +88,7 @@ class MemberController extends Controller
         $inputs['biodata']= "asdajkshdfkjahseljalskjdlfajklsdlfkalskdfasei";
         switch (strtolower(snake_case($inst->name,'_'))){
             case 'birth_and_death':
-                $memid = array_search('member_id', $inputs);
-                unset($inputs[$memid]);
+                unset($inputs['member_id']);
                 $inputs['ref_id']= uniqid('bad-');
                 $rules = [
                     'first_name'=> 'required|no_numeric|max:32',
@@ -242,6 +241,10 @@ class MemberController extends Controller
         $ssnit  = SsnitDetail::where('member_id',$id)->first();
 //        dd($pass,$dvla,$ssnit,$hosp,$ec);
         return view('details',compact('bad','pass','dvla','hosp','members','ec','ssnit'));
+    }
+
+    public function saveFinger(Request $request){
+       return ($request->input());
     }
 
     /**
