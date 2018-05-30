@@ -232,8 +232,8 @@ class MemberController extends Controller
         $bad    = Member::where('ref_id',$id)
                 ->orWhere('first_name','like',"%{$id}%")
                 ->orWhere('last_name','like',"%{$id}%")
-                ->first();
-        dd($bad);
+                ->first() ;
+//        dd($bad ? 'hello':'asd');
         $member_id = $bad ? $bad->ref_id: '';
         $pass   = PassportDetail::where('member_id',$id)->first();
         $dvla   = LicenceDetail::where('member_id',$id)->first();

@@ -54,7 +54,7 @@
                 </div>
             </div>
         </form>
-        @if(count($bad))
+        @if(($bad))
         <div class="details bg-white " style=" margin-top:10px;  padding:10px 40px;background: #fff;">
             <div class="card" >
                 <div class="card-header text-center"> <h4 >Personal Details <button class="btn btn-info pull-right" onclick="window.print();" > <i class="glyphicon glyphicon-print"></i> Print </button> </h4></div>
