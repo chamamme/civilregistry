@@ -9,7 +9,7 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'ghreg') }}</title>
+    <title>{{ config('app.name', 'Civil Registry') }}</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
@@ -300,7 +300,7 @@
 
             ///Now lets set the read only fields as well
             $('input[name="first_name"]').val(data.first_name);
-            $('input[name="last_name"]').val(data.first_name);
+            $('input[name="last_name"]').val(data.last_name);
             $('input[name="dob"]').val(data.dob);
             $('input[name="place_of_birth"]').val(data.place_of_birth);
         }
