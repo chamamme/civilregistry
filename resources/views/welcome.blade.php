@@ -30,8 +30,12 @@
 
                             @auth
                                 <li class="active" role="presentation"><a href="{{ url('/home') }}"><i class="glyphicon glyphicon-user"></i> Home<br> <small>{{auth()->user()->name}}</small> </a></li>
-                                <li role="presentation"><a href="logout.php"><i class="glyphicon glyphicon-log-out"></i> Log out</a></li>
-                            @else
+                                <li role="presentation"><a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();"><i class="glyphicon glyphicon-log-out"></i> Log out</a></li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                                </form>
+                        @else
                                 <li role="presentation"><a href="{{ route('login') }}"><i class="glyphicon glyphicon-log-out"></i> Login</a></li>
                                 <li role="presentation"><a href="{{ route('register') }}"><i class="glyphicon glyphicon-log-out"></i> Signup</a></li>
                             @endauth

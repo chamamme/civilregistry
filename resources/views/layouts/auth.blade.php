@@ -259,7 +259,7 @@
     </div>
 </div>
 </html>
-<script src="{{asset('js/app.js')}}"></script>
+{{--<script src="{{asset('js/app.js')}}"></script>--}}
 <script type="application/javascript">
     $("#lookupForm").submit( function (event) {
         event.preventDefault();
