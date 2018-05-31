@@ -17,3 +17,13 @@ label{
 .card-header{
     text-align: center;
 }
+
+.watermark{
+    position: absolute;
+    top:50vh;
+    opacity: 0.2;
+    z-index: 99;
+    color: #b75a58;
+    font-size: 200px;
+    transform: rotate(-43deg);
+}

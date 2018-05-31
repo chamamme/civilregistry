@@ -11,6 +11,7 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <link href="{{asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('css/styles.css')}}" rel="stylesheet" type="text/css">
+    <link href="{{asset('css/custom.css')}}" rel="stylesheet" type="text/css">
 
     <!-- Styles -->
 </head>
@@ -63,6 +64,9 @@
             <div class="card" >
                 <div class="card-header text-center"> <h4 >Personal Details <button class="btn btn-info pull-right" onclick="window.print();" > <i class="glyphicon glyphicon-print"></i> Print </button> </h4></div>
                 <div class="card-body">
+                    @if($bad->status == 'deceased')
+                    <span class="watermark"> Deceased </span>
+                    @endif
                     <div class="row">
                         <div class="col-md-3">
                             <img class="ui medium rounded fluid image" width="100%" src="{{asset($bad->image)}}">
@@ -373,8 +377,6 @@
                     </div>
                 </div>
             </div>
-
-
         </div>
         @else
             <div class="alert alert-info"> No match found </div>

@@ -251,12 +251,18 @@ class MemberController extends Controller
         $ec     = ElectrolDetail::where('member_id',$id)->first();
         $ssnit  = SsnitDetail::where('member_id',$id)->first();
         $pc  = PoliceDetail::where('member_id',$id)->first();
-//        dd($pass,$dvla,$ssnit,$hosp,$ec);
         return view('details',compact('bad','pass','dvla','hosp','members','ec','ssnit','pc'));
     }
 
     public function saveFinger(Request $request){
        return ($request->input());
+    }
+
+    public function markDeceased(Request $request,$id){
+//        dd('as');
+        Member::where('ref_id',$id)->update(['status'=>'deceased']);
+        Session::flash('flash_message',['type'=>'alert-info','message'=>' Successfully marked as deceased']);
+        return redirect()->back();
     }
 
     /**

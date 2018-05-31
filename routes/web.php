@@ -22,8 +22,10 @@ Route::group(['middleware'=>['web','auth']],function () {
     Route::get('members/', 'MemberController@index')->name('members.list');
     Route::get('members/add', 'MemberController@create')->name('members.add');
     Route::post('members/add', 'MemberController@store')->name('members.add');
+    Route::get('members/{id}/mark-as-deceased', 'MemberController@markDeceased')->name('members.markDeceased');
+
 });
 
 Route::get('members/details', 'MemberController@details')->name('members.details');
 Route::get('members/verify', 'MemberController@verify')->name('members.verify');
-Route::get('members/save_finger', 'MemberController@saveFinger')->name('members.verify');
+Route::get('members/save-finger', 'MemberController@saveFinger')->name('members.verify');
