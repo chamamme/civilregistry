@@ -98,7 +98,7 @@ class MemberController extends Controller
                     'email' => 'email'
                 ];
                 $this->validate($request,$rules);
-                Member::create($inputs);
+                $details = Member::create($inputs);
                 break;
             case 'passport_office':
                 $rules = [
@@ -120,7 +120,7 @@ class MemberController extends Controller
                 ];
                 $inputs['ref_id']= uniqid('ps-');
                 $this->validate($request,$rules);
-                PassportDetail::create($inputs);
+                $details = PassportDetail::create($inputs);
                 break;
             case 'd_v_l_a':
                 $rules = [
@@ -137,7 +137,7 @@ class MemberController extends Controller
                 ];
                 $inputs['ref_id']= uniqid('dv-');
                 $this->validate($request,$rules);
-                LicenceDetail::create($inputs);
+                $details = LicenceDetail::create($inputs);
                 break;
             case 'hospital':
                 $rules = [
@@ -152,7 +152,7 @@ class MemberController extends Controller
                 ];
                 $inputs['ref_id']= uniqid('hs-');
                 $this->validate($request,$rules);
-                HospitalDetail::create($inputs);
+                $details = HospitalDetail::create($inputs);
                 break;
             case 'police':
                 $rules = [
@@ -167,7 +167,7 @@ class MemberController extends Controller
                 ];
                 $inputs['ref_id']= uniqid('hs-');
                 $this->validate($request,$rules);
-                PoliceDetail::create($inputs);
+                $details = PoliceDetail::create($inputs);
                 break;
             case 'e_c':
 
@@ -183,7 +183,7 @@ class MemberController extends Controller
                 ];
                 $inputs['ref_id']= uniqid('ec-');
                 $this->validate($request,$rules);
-                ElectrolDetail::create($inputs);
+                $details = ElectrolDetail::create($inputs);
                 break;
             case 's_s_n_i_t':
 
@@ -202,11 +202,22 @@ class MemberController extends Controller
                 ];
                 $inputs['ref_id']= uniqid('ec-');
                 $this->validate($request,$rules);
-                SsnitDetail::create($inputs);
+                $details = SsnitDetail::create($inputs);
                 break;
 
         }
-
+        if ($request->hasFile('image')) {
+            $image = $request->file('image');
+            $name = str_slug($details->ref_id).'.'.strtolower($image->getClientOriginalExtension());
+            $destinationPath = public_path('');
+            $imagePath = $destinationPath. "/".  $name;
+            $image->move($destinationPath, $name);
+            $details->image = $name;
+            #update member image column with image path
+            $details->save();
+            Member::where('ref_id',$details->member_id)->update(['image'=>$name]);
+        }
+//        dd($details);
         Session::flash('flash_message',['type'=>'alert-info','message'=>'Saved Successfully']);
         return redirect(route('members.list'));
 //        return redirect(route('members.list'));
@@ -239,8 +250,9 @@ class MemberController extends Controller
         $hosp   = HospitalDetail::where('member_id',$id)->first();
         $ec     = ElectrolDetail::where('member_id',$id)->first();
         $ssnit  = SsnitDetail::where('member_id',$id)->first();
+        $pc  = PoliceDetail::where('member_id',$id)->first();
 //        dd($pass,$dvla,$ssnit,$hosp,$ec);
-        return view('details',compact('bad','pass','dvla','hosp','members','ec','ssnit'));
+        return view('details',compact('bad','pass','dvla','hosp','members','ec','ssnit','pc'));
     }
 
     public function saveFinger(Request $request){
@@ -278,8 +290,8 @@ class MemberController extends Controller
     public function verify(Request $request){
         $str = trim($request->bad_id);
         $members = Member::where('ref_id',$str)
-            ->orWhere('first_name','like',"%{$str}%")
-            ->orWhere('last_name','like',"%{$str}%")
+            ->orWhere('first_name','like',"{$str}")
+            ->orWhere('last_name','like',"{$str}")
             ->first();
 //        dd($str,$members);
         return json_encode($members ? $members : []);

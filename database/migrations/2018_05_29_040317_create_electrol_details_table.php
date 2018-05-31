@@ -30,6 +30,7 @@ class CreateElectrolDetailsTable extends Migration
             #PASS
             $table->string('profession')->nullable();
             $table->string('biodata')->nullable();
+
             $table->timestamps();
         });
     }

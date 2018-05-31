@@ -56,7 +56,7 @@
             </div>
         </div>
         <footer></footer>
-        <script src="/js/jquery.min.js"></script>
+        <script src="{{asset('js/app.js')}}"></script>
         <script src="/bootstrap/js/bootstrap.min.js"></script>
         <script id="bs-live-reload" data-sseport="50231" data-lastchange="1517257878577" src="/js/livereload.js"></script>
     </body>

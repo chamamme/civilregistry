@@ -10,12 +10,11 @@
                 <form method="POST" action="{{ route('members.add') }}">
                     <input id="member_id" type="hidden" name="member_id" value="" required>
                     <div class="card">
-                        <div class="card-header text-center">{{ __("Add Member to {$inst->name}") }}
+                        <div class="card-header text-center">
+                        <h3>{{ __("{$inst->name}") }}</h3>
 
                         <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#myModal">
-                                Verify
-                            </button>
+
                         </div>
 
                         <div class="card-body">

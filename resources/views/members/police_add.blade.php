@@ -6,15 +6,15 @@
                         {{ session('status') }}
                     </div>
                 @endif
-                <form method="POST" action="{{ route('members.add') }}">
-                    <input id="member_id" type="hidden" name="member_id" value="" required>
+                <form method="POST" action="{{ route('members.add') }}" enctype="multipart/form-data">
+                    <input id="member_id" type="hidden" name="member_id"value="{{old('member_id')}}" required>
 
                     <div class="card">
                         <div class="card-header text-center">
                             <h3>{{ __($inst->name) }}
                         <!-- Button trigger modal -->
                             <button type="button" class="btn btn-primary btn-sm pull-right" data-toggle="modal" data-target="#myModal">
-                                Verify
+                                Check Birth Registry
                             </button>
                             </h3>
                         </div>
@@ -26,7 +26,7 @@
                                         <div class="form-group">
                                             <label for="first_name" class="-form-label text-md-right">{{ __('First Name') }}</label>
 
-                                                <input id="first_name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" value="{{ old('first_name') }}" required >
+                                                <input readonly id="first_name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" value="{{ old('first_name') }}" required >
                                                 @if ($errors->has('first_name'))
                                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('first_name') }}</strong>
@@ -38,7 +38,7 @@
                                         <div class="form-group">
                                             <label for="last_name" class=" text-md-right">{{ __('Last Name') }}</label>
 
-                                                <input id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('last_name') }}" required >
+                                                <input readonly id="last_name" type="text" class="form-control{{ $errors->has('last_name') ? ' is-invalid' : '' }}" name="last_name" value="{{ old('last_name') }}" required >
                                                 @if ($errors->has('last_name'))
                                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('last_name') }}</strong>
@@ -85,6 +85,19 @@
                                                 <span class="invalid-feedback">
                                         <strong>{{ $errors->first('phone') }}</strong>
                                     </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class=" col-md-3">
+                                    <div class="form-group">
+                                        <label for="image" class=" text-md-right">{{ __(' Photo ') }}</label>
+                                        <div class="">
+                                            <input id="image" type="file" class="form-control{{ $errors->has('image') ? ' is-invalid' : '' }}" name="image" value="{{ old('image') }}" required>
+                                            @if ($errors->has('image'))
+                                                <span class="invalid-feedback">
+                                            <strong>{{ $errors->first('image') }}</strong>
+                                        </span>
                                             @endif
                                         </div>
                                     </div>

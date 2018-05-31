@@ -87,7 +87,7 @@
                             <div class="header">
                                 The user must have a record in Birth and Death's Registry.
                             </div>
-                            <p>You can check it by clicking the verify buttom on your right</p>
+                            <p>You can check it by clicking the <i>"Check Birth Registry"</i> button on your right</p>
                         </div>
 
                     </div>
@@ -110,7 +110,7 @@
                                 <div class="description">Ghana Immigration</div>
                             </div>
                         </div>
-                        <div class=" step @if(strtolower($inst->name) != 'dvlahospital') disabled @endif " id="billingbtn" onclick="billing()">
+                        <div class=" step @if(strtolower($inst->name) != 'dvla') disabled @endif " id="billingbtn" onclick="billing()">
                             <i class="car icon"></i>
                             <div class="content">
                                 <div class="title">DVLA</div>
@@ -177,14 +177,17 @@
                 <h4 class="modal-title" id="myModalLabel">Birthcert Verification</h4>
             </div>
             <div class="modal-body">
-                <div class="form-group">
-                    <div class="input-group">
-                        <input class="form-control" id="bad_id" type="text" value="" name="bad_id" placeholder="Enter Birth Certificate Id / Fist Name/ Last Name">
-                        <span class="input-group-btn">
-                            <button class="btn btn-default" onclick="lookup()" type="button">Go!</button>
+                <form id="lookupForm">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input class="form-control" id="bad_id" type="text" value="" name="bad_id" placeholder="Enter Birth Certificate Id / Fist Name/ Last Name">
+                            <span class="input-group-btn">
+                            <button class="btn btn-default" type="button"><i class=" search icon"></i> </button>
                           </span>
+                        </div>
                     </div>
-                </div>
+
+                </form>
 
                 <div id="bad_detail" class="" style="display: none">
                     <div id="bad_message"></div>
@@ -250,47 +253,59 @@
                 </div>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">OK</button>
             </div>
         </div>
     </div>
 </div>
 </html>
-<script>
-    function lookup() {
+<script src="{{asset('js/app.js')}}"></script>
+<script type="application/javascript">
+    $("#lookupForm").submit( function (event) {
+        event.preventDefault();
+        console.log('dasds');
         $('#bad_detail').fadeIn();
         bad_id = $('#bad_id').val();
         endpoint = "/members/verify?bad_id="+bad_id
         fetch(endpoint)
-                .then(resp => resp.json())
-                .then(data =>{
-                    len = Object.keys(data).length;
-                    if(len < 1 ){
-                        $('#bad_message').html("<div class='alert alert-info' >No match found !</div>")
-                        $('#bad_detail > table').hide();
-                        $("#bad_message").show();
-                        $('#member_id').val('');
-                    }else{
-                        $("#bad_message").hide();
-                        $('#member_id').val(data.ref_id);
-                        $('#_fname').html(data.first_name);
-                        $('#_lname').html(data.last_name);
-                        $('#_gender').html(data.gender);
-                        $('#_placeofbirth').html(data.place_of_birth);
-                        $('#_dob').html(data.dob);
-                        $('#_phone').html(data.phone);
-                        $('#_email').html(data.email);
-                        $('#_fathername').html(data.father_name);
-                        $('#_fatheroccup').html(data.father_occupation);
-                        $('#_fathernation').html(data.father_nationality);
+            .then(resp => resp.json())
+        .then(data =>{
+            len = Object.keys(data).length;
+        if(len < 1 ){
+            $('#bad_message').html("<div class='alert alert-info' >No match found !</div>")
+            $('#bad_detail > table').hide();
+            $("#bad_message").show();
+            $('#member_id').val('');
+        }else{
 
-                        $('#_mothername').html(data.mother_name);
-                        $('#_motheroccup').html(data.mother_occupation);
-                        $('#_mothernation').html(data.mother_nationality);
-                        $('#bad_detail > table').show();
-                        $('#bad_detail').fadeIn();
-                    }
+            $("#bad_message").hide();
+            $('#member_id').val(data.ref_id);
+            $('#_fname').html(data.first_name);
+            $('#_lname').html(data.last_name);
+            $('#_gender').html(data.gender);
+            $('#_placeofbirth').html(data.place_of_birth);
+            $('#_dob').html(data.dob);
+            $('#_phone').html(data.phone);
+            $('#_email').html(data.email);
+            $('#_fathername').html(data.father_name);
+            $('#_fatheroccup').html(data.father_occupation);
+            $('#_fathernation').html(data.father_nationality);
+
+            $('#_mothername').html(data.mother_name);
+            $('#_motheroccup').html(data.mother_occupation);
+            $('#_mothernation').html(data.mother_nationality);
+            $('#bad_detail > table').show();
+            $('#bad_detail').fadeIn();
+
+
+            ///Now lets set the read only fields as well
+            $('input[name="first_name"]').val(data.first_name);
+            $('input[name="last_name"]').val(data.first_name);
+            $('input[name="dob"]').val(data.dob);
+            $('input[name="place_of_birth"]').val(data.place_of_birth);
+        }
         console.log(data.length);
-                });
-    }
+    });
+    });
+
 </script>
