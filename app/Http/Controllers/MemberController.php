@@ -240,11 +240,11 @@ class MemberController extends Controller
         $id     = $request->id;
 //        $id = 'bad-5b0d4dd4c3ec5';
         $bad    = Member::where('ref_id',$id)
-                ->orWhere('first_name','like',"%{$id}%")
-                ->orWhere('last_name','like',"%{$id}%")
+                ->orWhere('first_name','like',"{$id}")
+                ->orWhere('last_name','like',"{$id}")
                 ->first() ;
 //        dd($bad ? 'hello':'asd');
-        $member_id = $bad ? $bad->ref_id: '';
+        $id = $bad ? $bad->ref_id: '';
         $pass   = PassportDetail::where('member_id',$id)->first();
         $dvla   = LicenceDetail::where('member_id',$id)->first();
         $hosp   = HospitalDetail::where('member_id',$id)->first();

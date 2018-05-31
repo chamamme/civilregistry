@@ -154,6 +154,10 @@
                                                 <td id="_dob">{{$pass->phone}}</td>
                                             </tr>
                                             <tr>
+                                                <th scope="row"> Profession </th>
+                                                <td id="_dob">{{$pass->profession}}</td>
+                                            </tr>
+                                            <tr>
                                                 <th scope="row">Place Of Issue </th>
                                                 <td id="_placeofbirth">Head Office</td>
                                             </tr>
@@ -275,18 +279,7 @@
                                                     <th scope="row"> Weight </th>
                                                     <td id="">{{$hosp->weight}} </td>
                                                 </tr>
-                                                <tr>
-                                                    <th scope="row"> Disorder </th>
-                                                    <td id="">{{$hosp->disorder}} </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row"> Natural Sickness </th>
-                                                    <td id="">{{$hosp->natural_sickness}} </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row"> Report </th>
-                                                    <td id="">{{$hosp->report}} </td>
-                                                </tr>
+                                                
                                                 <tr>
                                                     <th scope="row"> Date Recorded </th>
                                                     <td id="_gender">{{$hosp->created_at}}</td>
