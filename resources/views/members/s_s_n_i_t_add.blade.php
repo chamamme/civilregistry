@@ -91,11 +91,11 @@
                                     <div class=" col-md-6">
                                         <div class="form-group">
                                             <label for="salary" class=" text-md-right">{{ __('Salary') }}</label>
-                                            <div class="input-group-addon">
-                                                <input id="salary" type="number" class="form-control{{ $errors->has('salary') ? ' is-invalid' : '' }}" name="salary" value="{{ old('salary') }}" required>
+                                            <div class="input-group">
                                                 <span class="input-group-btn">
-                                                    <button class="btn btn-default" type="button">FT</button>
+                                                    <button class="btn btn-default" type="button">GHS</button>
                                                   </span>
+                                                <input id="salary" type="number" class="form-control{{ $errors->has('salary') ? ' is-invalid' : '' }}" name="salary" value="{{ old('salary') }}" required>
                                             </div>
                                             @if ($errors->has('salary'))
                                                 <span class="invalid-feedback">

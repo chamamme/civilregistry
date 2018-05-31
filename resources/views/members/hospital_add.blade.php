@@ -8,8 +8,6 @@
                 @endif
                 <form method="POST" action="{{ route('members.add') }}" enctype="multipart/form-data">
                     <input id="member_id" type="hidden" name="member_id" value="{{old('member_id')}}" required>
-
-
                     <div class="card">
                         <div class="card-header text-center">
                             <h3>{{ __($inst->name) }}
@@ -26,8 +24,7 @@
                                     <div class="col col-md-6">
                                         <div class="form-group">
                                             <label for="first_name" class="-form-label text-md-right">{{ __('First Name') }}</label>
-
-                                                <input readonly id="first_name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" value="{{ old('first_name') }}" required >
+                                                <input readonly  id="first_name" type="text" class="form-control{{ $errors->has('first_name') ? ' is-invalid' : '' }}" name="first_name" value="{{ old('first_name') }}" required >
                                                 @if ($errors->has('first_name'))
                                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('first_name') }}</strong>

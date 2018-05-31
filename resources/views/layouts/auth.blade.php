@@ -182,16 +182,16 @@
                         <div class="input-group">
                             <input class="form-control" id="bad_id" type="text" value="" name="bad_id" placeholder="Enter Birth Certificate Id / Fist Name/ Last Name">
                             <span class="input-group-btn">
-                            <button class="btn btn-default" type="button"><i class=" search icon"></i> </button>
+                            <button class="btn btn-default" type="submit"><i class=" search icon"></i> </button>
                           </span>
                         </div>
                     </div>
 
                 </form>
 
-                <div id="bad_detail" class="" style="display: none">
+                <div id="bad_detail" class="" style="">
                     <div id="bad_message"></div>
-                    <table class="table table-hover " >
+                    <table class="table table-hover " style="display: none" >
                     <thead>
                     <tr>
                         <th></th>
@@ -259,12 +259,12 @@
     </div>
 </div>
 </html>
-{{--<script src="{{asset('js/app.js')}}"></script>--}}
+{{--<script src="/js/jquery.min.js"></script>--}}
+<script src="{{asset('vendor/jquery/jquery-3.2.1.min.js')}}"></script>
 <script type="application/javascript">
     $("#lookupForm").submit( function (event) {
         event.preventDefault();
-        console.log('dasds');
-        $('#bad_detail').fadeIn();
+//        $('#bad_detail').fadeIn();
         bad_id = $('#bad_id').val();
         endpoint = "/members/verify?bad_id="+bad_id
         fetch(endpoint)
