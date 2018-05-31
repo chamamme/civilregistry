@@ -82,7 +82,7 @@
                                 <tbody>
                                 <tr>
                                     <th scope="row"> Name </th>
-                                    <td id="_fname">{{$bad->first_name}} {{$bad->first_name}}</td>
+                                    <td id="_fname">{{$bad->first_name}} {{$bad->last_name}}</td>
                                 </tr>
                                 <tr>
                                     <th scope="row">Gender </th>
