@@ -231,142 +231,116 @@
                             </div>
                         </div>
                         @endif
-                        @if($ec)
+                        
+                        @if($hosp)
                         <div class="col-md-4">
-                            <div class="card">
-                                <div class="card-header text-center"> <h4 >Electoral Commision Details </h4></div>
-                                <div class="card-body">
-                                    <table class="table table-hover " >
-                                        <thead>
-                                        <tr>
-                                            <th></th>
-                                            <th></th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr>
-                                            <th scope="row"> No# </th>
-                                            <td id="">{{$dvla->ref_id}} </td>
-                                        </tr>
-                                        <tr>
-                                            <th scope="row"> Date Issued </th>
-                                            <td id="_gender">{{$dvla->created_at}}</td>
-                                        </tr>
-
-                                    </table>
+                                <div class="card">
+                                    <div class="card-header text-center"> <h4 >Hospital Details </h4></div>
+                                    <div class="card-body">
+                                        <table class="table table-hover " >
+                                            <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row"> No# </th>
+                                                <td id="">{{$hosp->ref_id}} </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"> Weight </th>
+                                                <td id="">{{$hosp->weight}} </td>
+                                            </tr>
+                                            
+                                            <tr>
+                                                <th scope="row"> Date Recorded </th>
+                                                <td id="_gender">{{$hosp->created_at}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
                                 </div>
-                            </div>
                         </div>
-                            @endif
-                            @if($hosp)
+                        @endif
+                        @if($ssnit)
                             <div class="col-md-4">
-                                    <div class="card">
-                                        <div class="card-header text-center"> <h4 >Hospital Details </h4></div>
-                                        <div class="card-body">
-                                            <table class="table table-hover " >
-                                                <thead>
-                                                <tr>
-                                                    <th></th>
-                                                    <th></th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    <th scope="row"> No# </th>
-                                                    <td id="">{{$hosp->ref_id}} </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row"> Weight </th>
-                                                    <td id="">{{$hosp->weight}} </td>
-                                                </tr>
-                                                
-                                                <tr>
-                                                    <th scope="row"> Date Recorded </th>
-                                                    <td id="_gender">{{$hosp->created_at}}</td>
-                                                </tr>
-                                            </table>
-                                        </div>
+                                <div class="card">
+                                    <div class="card-header text-center"> <h4 >SSNIT Details </h4></div>
+                                    <div class="card-body">
+                                        <table class="table table-hover " >
+                                            <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row"> No# </th>
+                                                <td id="">{{$ssnit->ref_id}} </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"> Profession </th>
+                                                <td id="">{{$ssnit->profession}} </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"> Salary </th>
+                                                <td id=""> GHC {{$ssnit->salary}} </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"> Date Recorded </th>
+                                                <td id="_gender">{{$ssnit->created_at}}</td>
+                                            </tr>
+                                        </table>
                                     </div>
+                                </div>
                             </div>
-                            @endif
-                            @if($ssnit)
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <div class="card-header text-center"> <h4 >SSNIT Details </h4></div>
-                                        <div class="card-body">
-                                            <table class="table table-hover " >
-                                                <thead>
-                                                <tr>
-                                                    <th></th>
-                                                    <th></th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    <th scope="row"> No# </th>
-                                                    <td id="">{{$ssnit->ref_id}} </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row"> Profession </th>
-                                                    <td id="">{{$ssnit->profession}} </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row"> Disorder </th>
-                                                    <td id=""> GHC {{$ssnit->salary}} </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row"> Date Recorded </th>
-                                                    <td id="_gender">{{$ssnit->created_at}}</td>
-                                                </tr>
-                                            </table>
-                                        </div>
+                        @endif
+
+                        @if($pc)
+                            <div class="col-md-4">
+                                <div class="card">
+                                    <div class="card-header text-center"> <h4 >Police Record </h4></div>
+                                    <div class="card-body">
+                                        <table class="table table-hover " >
+                                            <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th></th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr>
+                                                <th scope="row"> No# </th>
+                                                <td id="">{{$pc->ref_id}} </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"> Case Number </th>
+                                                <td id="">{{$pc->case_number}} </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"> Case Type </th>
+                                                <td id="">{{$pc->case_type}} </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"> Case Report </th>
+                                                <td id="">{{$pc->case_report}} </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"> Officer In Charge </th>
+                                                <td id="">{{$pc->officer_in_charge}} </td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"> Date Issued </th>
+                                                <td id="_gender">{{$dvla->created_at}}</td>
+                                            </tr>
+
+                                        </table>
                                     </div>
                                 </div>
-                            @endif
-
-                            @if($pc)
-                                <div class="col-md-4">
-                                    <div class="card">
-                                        <div class="card-header text-center"> <h4 >Police Record </h4></div>
-                                        <div class="card-body">
-                                            <table class="table table-hover " >
-                                                <thead>
-                                                <tr>
-                                                    <th></th>
-                                                    <th></th>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    <th scope="row"> No# </th>
-                                                    <td id="">{{$pc->ref_id}} </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row"> Case Number </th>
-                                                    <td id="">{{$pc->case_number}} </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row"> Case Type </th>
-                                                    <td id="">{{$pc->case_type}} </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row"> Case Report </th>
-                                                    <td id="">{{$pc->case_report}} </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row"> Officer In Charge </th>
-                                                    <td id="">{{$pc->officer_in_charge}} </td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row"> Date Issued </th>
-                                                    <td id="_gender">{{$dvla->created_at}}</td>
-                                                </tr>
-
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endif
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
