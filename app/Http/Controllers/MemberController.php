@@ -262,6 +262,7 @@ class MemberController extends Controller
 //        dd('as');
         Member::where('ref_id',$id)->update(['status'=>'deceased']);
         Session::flash('flash_message',['type'=>'alert-info','message'=>' Successfully marked as deceased']);
+
         return redirect()->back();
     }
 

@@ -38,7 +38,7 @@
                 <tbody>
                 @php($count = 1)
                 @foreach($members as $member)
-                    <tr>
+                    <tr  class=" @if($member->status =='deceased') bg-danger @endif" >
                         <th scope="row">{{$count}}</th>
                         <td>{{$member->ref_id}}</td>
                         <td>{{$member->last_name}} {{$member->first_name}}</td>
@@ -48,10 +48,15 @@
                         <td>{{$member->created_at}}</td>
                         @if($slug == "birth_and_death")
                         <td>
+                            @if($member->status =='alive')
                             <a href="#" onclick="if(confirm('Are you sure you want to mark this person as deceased? Action cannot be reverted')){$('#deceased-form').submit()}" class="btn btn-default"><i class="glyphicon glyphicon-eye-open"></i> Mark Deceased </a></td>
                             <form id="deceased-form" action="{{route("members.markDeceased",$member->ref_id)}}" method="get" style="display: none;">
                                 @csrf
                             </form>
+                            @else
+                            <button onclick="" class="btn btn-default" disabled><i class="glyphicon glyphicon-eye-open"></i> Deceased </button></td>
+
+                        @endif
                         @endif
                     </tr>
                     @php($count++)
