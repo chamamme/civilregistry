@@ -27,3 +27,10 @@ label{
     font-size: 200px;
     transform: rotate(-43deg);
 }
+
+.row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}

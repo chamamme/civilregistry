@@ -4,6 +4,9 @@
     <div class="limiter">
         <div class="container-login100">
             <div class="wrap-login100 p-t-50 p-b-90">
+            <a class="" href="{{ url('/') }}">
+                    <img class="ui tiny centered image"  src="{{asset('img/logo.jpg')}}">
+                </a>
                 <form class="login100-form validate-form flex-sb flex-w" method="post" action="{{ route('login') }}">
                     @csrf
 					<span class="login100-form-title p-b-51">

@@ -8,6 +8,7 @@
     <title>{{config('app.name')}}</title>
 
     <!-- Fonts -->
+    <link href="{{ asset('semantic/semantic.min.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <link href="{{asset('bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css">
     <link href="{{asset('css/styles.css')}}" rel="stylesheet" type="text/css">
@@ -22,9 +23,13 @@
             <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
         </div>
         <div class="collapse navbar-collapse" id="navcol-1">
-            <ul class="nav navbar-nav">
+             <a class="navbar-brand" href="{{ url('/') }}">
+                <img class="ui avatar image"  src="{{asset('img/logo.jpg')}}">
+                <span>{{ config('app.name', 'Laravel') }}</span> 
+            </a>
+            <!-- <ul class="nav navbar-nav">
                 <li role="presentation"><a href="{{route('members.add')}}"> Add Member </a></li>
-            </ul>
+            </ul> -->
             <ul class="nav navbar-nav navbar-right">
                 <ul class="nav navbar-nav navbar-right">
                 </ul>
@@ -323,13 +328,13 @@
                                                 <th scope="row"> Case Type </th>
                                                 <td id="">{{$pc->case_type}} </td>
                                             </tr>
-                                            <tr>
+                                            <!-- <tr>
                                                 <th scope="row"> Case Report </th>
                                                 <td id="">{{$pc->case_report}} </td>
                                             </tr>
                                             <tr>
                                                 <th scope="row"> Officer In Charge </th>
-                                                <td id="">{{$pc->officer_in_charge}} </td>
+                                                <td id="">{{$pc->officer_in_charge}} </td> -->
                                             </tr>
                                             <tr>
                                                 <th scope="row"> Date Issued </th>
