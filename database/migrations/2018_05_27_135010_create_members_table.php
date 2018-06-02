@@ -20,9 +20,10 @@ class CreateMembersTable extends Migration
             $table->string('last_name');
             $table->enum('gender',['male','female']);
             $table->date('dob');
-            $table->string('phone');
-            $table->string('email')->nullable()->unique();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
             $table->string('place_of_birth');
+            $table->enum('status',['alive','deceased']);
             #Parent
             $table->string('father_name')->nullable();
             $table->string('father_occupation')->nullable();
@@ -31,7 +32,12 @@ class CreateMembersTable extends Migration
             $table->string('mother_occupation')->nullable();
             $table->string('mother_nationality')->nullable();
             $table->string('proc_center')->nullable();
-//            $table->string('sig')->nullable();
+            $table->string('cause_of_death')->nullable();
+            $table->date('date_of_death')->nullable();
+            $table->time('time_of_death')->nullable();
+            $table->string('death_location')->nullable();
+            $table->string('death_evidence')->nullable();
+            $table->string('name_of_registerer')->nullable();
 
             $table->string('biodata')->nullable();
             $table->timestamps();

@@ -11,7 +11,7 @@
                     <input id="member_id" type="hidden" name="member_id" value="" required>
                     <div class="card">
                         <div class="card-header text-center">
-                        <h3>{{ __("{$inst->name}") }}</h3>
+                        <h3>Birth</h3>
 
                         <!-- Button trigger modal -->
 

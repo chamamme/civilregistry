@@ -61,14 +61,17 @@ class MemberController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
         //
         $countries = Country::where('demonym','!=','')->get();
 //        dd($countries);
         $inst = auth()->user()->institution;
         $template = strtolower(snake_case($inst->name,'_'));
-//        dd($template);
+
+        if($template =='birth_and_death' && $request->type){#check if is death
+            $template = 'death';
+        }
         return view("members.{$template}_add",compact('inst','countries'));
     }
 
@@ -93,7 +96,7 @@ class MemberController extends Controller
                 $rules = [
                     'first_name'=> 'required|no_numeric|max:32',
                     'last_name'=> 'required|no_numeric|max:32',
-                    'phone'=> 'required|phone',
+                    'phone'=> 'phone',
                     'gender'=>'required|string',
                     'email' => 'email'
                 ];
@@ -217,6 +220,16 @@ class MemberController extends Controller
             $details->save();
             Member::where('ref_id',$details->member_id)->update(['image'=>$name]);
         }
+        if ($request->hasFile('death_evidence')) {
+            $image = $request->file('death_evidence');
+            $name = "evd_".str_slug($details->ref_id).'.'.strtolower($image->getClientOriginalExtension());
+            $destinationPath = public_path('');
+            $imagePath = $destinationPath. "/".  $name;
+            $image->move($destinationPath, $name);
+            $details->death_evidence = $name;
+            #update member image column with image path
+            $details->save();
+        }
 //        dd($details);
         Session::flash('flash_message',['type'=>'alert-info','message'=>'Saved Successfully']);
         return redirect(route('members.list'));
@@ -239,6 +252,7 @@ class MemberController extends Controller
     public function details(Request $request){
         $id     = $request->id;
 //        $id = 'bad-5b0d4dd4c3ec5';
+
         $bad    = Member::where('ref_id',$id)
                 ->orWhere('first_name','like',"{$id}")
                 ->orWhere('last_name','like',"{$id}")
@@ -258,9 +272,28 @@ class MemberController extends Controller
        return ($request->input());
     }
 
-    public function markDeceased(Request $request,$id){
+    public function markDeceased(Request $request){
 //        dd('as');
-        Member::where('ref_id',$id)->update(['status'=>'deceased']);
+        $id = $request->ref_id;
+        $evidence = '';
+        if ($request->hasFile('death_evidence')) {
+            $image = $request->file('death_evidence');
+            $name = "evd_".str_slug($id).'.'.strtolower($image->getClientOriginalExtension());
+            $destinationPath = public_path('');
+            $image->move($destinationPath, $name);
+            $evidence = $name;
+        }
+
+         Member::where('ref_id',$id)->update([
+            'status'=>'deceased',
+            'date_of_death' => $request->date_of_death,
+            'time_of_death' => $request->time_of_death,
+            'death_location' => $request->death_location,
+            'name_of_registerer' => $request->name_of_registerer,
+            'cause_of_death' => $request->cause_of_death,
+            'death_evidence' => $evidence,
+        ]);
+
         Session::flash('flash_message',['type'=>'alert-info','message'=>' Successfully marked as deceased']);
 
         return redirect()->back();

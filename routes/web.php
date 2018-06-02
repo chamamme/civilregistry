@@ -22,7 +22,8 @@ Route::group(['middleware'=>['web','auth']],function () {
     Route::get('members/', 'MemberController@index')->name('members.list');
     Route::get('members/add', 'MemberController@create')->name('members.add');
     Route::post('members/add', 'MemberController@store')->name('members.add');
-    Route::get('members/{id}/mark-as-deceased', 'MemberController@markDeceased')->name('members.markDeceased');
+    Route::post('members/record-death', 'MemberController@recordDeath')->name('members.record-death');
+    Route::post('members/mark-as-deceased', 'MemberController@markDeceased')->name('members.markDeceased');
     Route::get('members/details', 'MemberController@details')->name('members.details');
 });
 
