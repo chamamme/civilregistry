@@ -140,7 +140,7 @@ class MemberController extends Controller
                     'id_type' => 'required',
                     'id_number' => 'required',
                 ];
-                $inputs['ref_id']= uniqid('dv-');
+                $inputs['ref_id']= uniqid('dvla-');
                 $this->validate($request,$rules);
                 $details = LicenceDetail::create($inputs);
                 break;
@@ -155,7 +155,7 @@ class MemberController extends Controller
                     'report' => 'required',
                     'weight' => 'required|numeric',
                 ];
-                $inputs['ref_id']= uniqid('hs-');
+                $inputs['ref_id']= uniqid('hosp-');
                 $this->validate($request,$rules);
                 $details = HospitalDetail::create($inputs);
                 break;
@@ -170,7 +170,7 @@ class MemberController extends Controller
                     'case_type' => 'required',
                     'officer_in_charge' => 'required',
                 ];
-                $inputs['ref_id']= uniqid('hs-');
+                $inputs['ref_id']= uniqid('plc-');
                 $this->validate($request,$rules);
                 $details = PoliceDetail::create($inputs);
                 break;
@@ -205,7 +205,7 @@ class MemberController extends Controller
                     'id_type' => 'required',
                     'id_number' => 'required',
                 ];
-                $inputs['ref_id']= uniqid('ec-');
+                $inputs['ref_id']= uniqid('snt-');
                 $this->validate($request,$rules);
                 $details = SsnitDetail::create($inputs);
                 break;
