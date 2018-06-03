@@ -11,6 +11,7 @@
                     <a  href="{{route('members.add',['type'=>'death'])}}" class="btn btn-danger pull-right ">
                         <i class=" icon "> </i> Record Death
                     </a>
+
                 @endif
 
             <a  href="{{route('members.add')}}" class="btn btn-success pull-right ">
@@ -26,6 +27,11 @@
                     {{ session('status') }}
                 </div>
             @endif
+            <div class="">
+                <a  href="" class=" pull-right " data-toggle="modal" data-target="#reportModal">
+                    <i class=" icon "> </i> Generate Report
+                </a>
+            </div>
             <table class="table table-striped">
                 <caption>Members of {{ auth()->user()->institution->name}}</caption>
                 <thead>
@@ -70,7 +76,7 @@
             </table>
         </div>
     </div>
-<div class="modal fade" id="deceasedModal" tabindex="-1" role="dialog" aria-labelledby="MarkDeceased">
+    <div class="modal fade" id="deceasedModal" tabindex="-1" role="dialog" aria-labelledby="MarkDeceased">
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
@@ -166,6 +172,85 @@
                 <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                 <button type="submit" class="btn btn-primary">Proceed</button>
             </div>
+            </form>
+        </div>
+
+    </div>
+</div>
+<div class="modal fade" id="reportModal" tabindex="-1" role="dialog" aria-labelledby="reportModal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Generate Report</h4>
+            </div>
+            <form id="report-form" action="{{route("members.report")}}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <div class="row">
+                        <div class=" col-md-6">
+                            <div class="form-group">
+                                <label for="from" class=" text-md-right">{{ __(' From ') }}</label>
+                                <div class="">
+                                    <input id="from" type="date" class="form-control{{ $errors->has('from') ? ' is-invalid' : '' }}" name="from" value="{{ old('from') }}" required>
+                                    @if ($errors->has('from'))
+                                        <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('from') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" col-md-6">
+                            <div class="form-group">
+                                <label for="to" class=" text-md-right">{{ __(' To') }}</label>
+                                <div class="">
+                                    <input id="to" type="date" class="form-control{{ $errors->has('to') ? ' is-invalid' : '' }}" name="to" value="{{ old('to') }}" required>
+                                    @if ($errors->has('to'))
+                                        <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('to') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                        <div class=" col-md-6">
+                            <div class="form-group">
+                                <label for="type" class=" text-md-right">{{ __(' Report Type ') }}</label>
+                                <div class="">
+                                    <select id="type" class="form-control{{ $errors->has('type') ? ' is-invalid' : '' }}" name="type" value="{{ old('type') }}" required>
+                                        <option value="">-- Select Type --</option>
+                                        <option value="birth">Birth</option>
+                                        <option value="death"> Death</option>
+                                    </select>
+                                    @if ($errors->has('type'))
+                                        <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('type') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class=" col-md-6">
+                            <div class="form-group">
+                                <label for="location" class=" text-md-right">{{ __('Location') }}</label>
+                                <div class="">
+                                    <input id="location" type="text" class="form-control{{ $errors->has('location') ? ' is-invalid' : '' }}" name="location" value="{{ old('location') }}" >
+                                    @if ($errors->has('location'))
+                                        <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('location') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Generate</button>
+                </div>
             </form>
         </div>
 

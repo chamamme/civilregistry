@@ -25,6 +25,7 @@ Route::group(['middleware'=>['web','auth']],function () {
     Route::post('members/record-death', 'MemberController@recordDeath')->name('members.record-death');
     Route::post('members/mark-as-deceased', 'MemberController@markDeceased')->name('members.markDeceased');
     Route::get('members/details', 'MemberController@details')->name('members.details');
+    Route::post('members/report', 'MemberController@report')->name('members.report');
 });
 
 Route::get('members/verify', 'MemberController@verify')->name('members.verify');

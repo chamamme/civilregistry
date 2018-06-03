@@ -10,10 +10,12 @@ use App\LicenceDetail;
 use App\Member;
 use App\PassportDetail;
 use App\PoliceDetail;
+use App\Reports\BirthDeathReport;
 use App\SsnitDetail;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Session;
+use Maatwebsite\Excel\Facades\Excel;
 use SebastianBergmann\GlobalState\Snapshot;
 
 class MemberController extends Controller
@@ -335,6 +337,33 @@ class MemberController extends Controller
             ->first();
 //        dd($str,$members);
         return json_encode($members ? $members : []);
+    }
+
+    /**
+     * Generates a report the specified parameters.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\Response
+     * @internal param int $id
+     */
+    public function report(Request $request)
+    {
+        $status = $request->get('type') == 'death' ?  'deceased' : 'alive';
+        $mem = Member::where('status',$status);
+        if($status == 'alive'){
+            $mem = $mem->whereBetween('created_at',[$request->from,$request->to]);
+
+        }else{
+            $mem = $mem->whereBetween('date_of_death',[$request->from,$request->to]);
+
+        }
+        if($request->location){
+            $mem = $mem->where('death_location',$request->location);
+        }
+
+        $result = $mem->get();
+        return view('members.report',compact('result','status'));
+
     }
 
     /**
