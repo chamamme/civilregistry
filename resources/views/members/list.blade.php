@@ -27,12 +27,14 @@
                     {{ session('status') }}
                 </div>
             @endif
-            <div class="">
-                    <button class="ui  button pull-right" tabindex="0" data-toggle="modal" data-target="#reportModal">
-                       <i class="file icon "></i> Generate Report
-                    </button>
+                @if($slug == 'birth_and_death')
+                    <div class="">
+                            <button class="ui  button pull-right" tabindex="0" data-toggle="modal" data-target="#reportModal">
+                               <i class="file icon "></i> Generate Report
+                            </button>
 
-            </div>
+                    </div>
+                @endif
             <table class="table table-striped">
                 <caption>Members of {{ auth()->user()->institution->name}}</caption>
                 <thead>
