@@ -351,10 +351,12 @@ class MemberController extends Controller
         $status = $request->get('type') == 'death' ?  'deceased' : 'alive';
         $mem = Member::where('status',$status);
         if($status == 'alive'){
-            $mem = $mem->whereBetween('created_at',[$request->from,$request->to]);
+            $mem = $mem->where('created_at','>=',$request->from)->where('created_at','<=',$request->to);
 
         }else{
-            $mem = $mem->whereBetween('date_of_death',[$request->from,$request->to]);
+//            $mem = $mem->whereBetween('date_of_death',[$request->from,$request->to]);
+            $mem = $mem->where('date_of_death','>=',$request->from)->where('created_at','<=',$request->to);
+
 
         }
         if($request->location){
