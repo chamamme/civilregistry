@@ -119,7 +119,7 @@
                             </div>
                         </div>
 
-                        <div class=" step @if(strtolower($inst->name) != '') disabled @endif " id="healthbtn" onclick="hospital()">
+                        <div class=" step @if(strtolower($inst->name) != 'hospital') disabled @endif " id="healthbtn" onclick="hospital()">
                             <i class="heartbeat icon"></i>
                             <div class="content">
                                 <div class="title">Hospital</div>
