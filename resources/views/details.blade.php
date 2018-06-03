@@ -224,13 +224,12 @@
                                         <tbody>
                                         <tr>
                                             <th scope="row"> No# </th>
-                                            <td id="">{{$dvla->ref_id}} </td>
+                                            <td id="">{{$ec->ref_id}} </td>
                                         </tr>
                                         <tr>
                                             <th scope="row"> Date Issued </th>
-                                            <td id="_gender">{{$dvla->created_at}}</td>
+                                            <td id="_gender">{{$ec->created_at}}</td>
                                         </tr>
-
                                     </table>
                                 </div>
                             </div>
@@ -302,7 +301,6 @@
                                 </div>
                             </div>
                         @endif
-
                         @if($pc)
                             <div class="col-md-4">
                                 <div class="card">
