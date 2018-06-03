@@ -28,9 +28,10 @@
                 </div>
             @endif
             <div class="">
-                <a  href="" class=" pull-right " data-toggle="modal" data-target="#reportModal">
-                    <i class=" icon "> </i> Generate Report
-                </a>
+                    <button class="ui  button pull-right" tabindex="0" data-toggle="modal" data-target="#reportModal">
+                       <i class="file icon "></i> Generate Report
+                    </button>
+
             </div>
             <table class="table table-striped">
                 <caption>Members of {{ auth()->user()->institution->name}}</caption>
