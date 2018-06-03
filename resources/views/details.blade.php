@@ -74,7 +74,7 @@
                     @endif
                     <div class="row">
                         <div class="col-md-3">
-                            <img class="ui medium rounded fluid image" width="100%" src="{{asset($bad->image)}}">
+                            <img class="ui medium rounded fluid image" width="100%" src="{{ file_exists(asset($bad->image)) ? asset($bad->image): asset('default-user.png')}}">
                         </div>
                         <div class="col-md-9">
                             <table class="table table-hover " >
